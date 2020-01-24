@@ -43,7 +43,7 @@ public class CaseInsensitiveMapWrapper<T> extends AbstractMap<String, T> impleme
 
   private static final long serialVersionUID = 8534959274607933747L;
 
-  protected final Map<CaseInsensitiveMapKey, T> baseMap;
+  protected Map<CaseInsensitiveMapKey, T> baseMap;
 
   /**
    * Creates a new instance using an existing map as backing map. Said map should be empty.
@@ -51,7 +51,7 @@ public class CaseInsensitiveMapWrapper<T> extends AbstractMap<String, T> impleme
    * @param map existing map
    */
   public CaseInsensitiveMapWrapper(Map map) {
-    this(map, true);
+    this.baseMap = SmallMap.copy(map);
   }
 
   private CaseInsensitiveMapWrapper(Map map, boolean requireEmpty) {
@@ -192,7 +192,6 @@ public class CaseInsensitiveMapWrapper<T> extends AbstractMap<String, T> impleme
     }
   }
 
-
   private static class KeySet extends AbstractConverterSet<CaseInsensitiveMapKey, String> {
 
     public KeySet(Set<CaseInsensitiveMapKey> keys) {
@@ -291,7 +290,6 @@ public class CaseInsensitiveMapWrapper<T> extends AbstractMap<String, T> impleme
 
     protected abstract Iterator<B> createIterator(Set<A> aSet);
   }
-
 
   private static class KeyIterator extends AbstractConverterIterator<CaseInsensitiveMapKey, String> {
 
