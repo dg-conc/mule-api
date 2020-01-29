@@ -66,7 +66,7 @@ public class CaseInsensitiveMapWrapper<T> extends AbstractMap<String, T> impleme
    * Creates a new instance using a {@link HashMap} as backing map.
    */
   public CaseInsensitiveMapWrapper() {
-    this(new HashMap());
+    this(new HashMap(), false);
   }
 
   /**
