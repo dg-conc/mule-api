@@ -51,10 +51,13 @@ public class CaseInsensitiveMapWrapper<T> extends AbstractMap<String, T> impleme
    * @param map existing map
    */
   public CaseInsensitiveMapWrapper(Map map) {
-    this.baseMap = SmallMap.copy(map);
+    this(map, true);
   }
 
-  private CaseInsensitiveMapWrapper(Map map, boolean requireEmpty) {
+  /**
+   * Use this constructor ONLY if the calling method is the only one who has the reference to the map parameter.
+   */
+  public CaseInsensitiveMapWrapper(Map map, boolean requireEmpty) {
     if (requireEmpty) {
       checkArgument(map.isEmpty(), "Cannot create case insensitive map from a non empty one.");
     }
