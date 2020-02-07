@@ -99,6 +99,12 @@ public class MultiMap<K, V> implements Map<K, V>, Serializable {
     this.paramsMap = new LinkedHashMap<>(multiMap.paramsMap);
   }
 
+  protected MultiMap(boolean initializeAttributes) {
+    if (initializeAttributes) {
+      this.paramsMap = new LinkedHashMap<>();
+    }
+  }
+
   public MultiMap(final Map<K, V> parametersMap) {
     this.paramsMap = parametersMap.entrySet().stream().collect(toMap(Entry::getKey, e -> {
       LinkedList<V> values = new LinkedList<>();
@@ -387,6 +393,7 @@ public class MultiMap<K, V> implements Map<K, V>, Serializable {
     private final MultiMap<K, V> m;
 
     public UnmodifiableMultiMap(MultiMap<K, V> m) {
+      super(false);
       this.m = m;
     }
 
